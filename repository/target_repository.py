@@ -1,6 +1,5 @@
 from returns.result import Result, Success, Failure
 from sqlalchemy.exc import SQLAlchemyError
-from typing import List
 from config.base import session_factory
 from model import Target
 from returns.maybe import Maybe, Nothing
