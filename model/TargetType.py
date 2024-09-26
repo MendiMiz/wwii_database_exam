@@ -7,6 +7,8 @@ class TargetType(Base):
     target_type_id = Column(Integer, primary_key=True, autoincrement=True)
     target_type_name = Column(String(200), unique=True, nullable=False)
 
+    targets = relationship("Target", back_populates="target_type")
+
     def to_dict(self):
         return {
             "target_type_id": self.target_type_id,

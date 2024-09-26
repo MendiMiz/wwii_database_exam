@@ -8,10 +8,11 @@ class Target(Base):
     target_industry  = Column(String(200), nullable=False)
     target_priority =Column(Integer)
     city_id = Column(Integer, ForeignKey("cities.city_id"), nullable=False)
-    target_type_id = Column(Integer, ForeignKey("target_type.target_type_id"))
+    target_type_id = Column(Integer, ForeignKey("target_types.target_type_id"))
 
 
     city = relationship("City", back_populates="targets")
+    target_type = relationship("TargetType", back_populates="targets")
 
     def to_dict(self):
         return {

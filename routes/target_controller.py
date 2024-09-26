@@ -1,6 +1,9 @@
 from flask import Blueprint, request, jsonify
+from jinja2.lexer import Failure
+from returns.result import Success
 
 from repository.target_repository import find_target_by_id, get_all_target
+from service.target_service import create_target_from_json
 
 target_blueprint = Blueprint("target", __name__)
 
@@ -22,5 +25,10 @@ def all_targets():
 @target_blueprint.route('/create', methods=['POST'])
 def create_target():
     target_json = request.json
-    
+    result = create_target_from_json(target_json)
+    if result is Success:
+        return jsonify(result.unwrap().to_dict()), 201
+    else:
+        return jsonify({"error": result.failure()}), 400
+
 

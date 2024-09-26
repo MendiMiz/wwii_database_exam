@@ -11,6 +11,7 @@ class Country(Base):
 
     cities = relationship("City", back_populates="country")
 
+
     def to_dict(self):
         return {
             "country_id": self.country_id,
